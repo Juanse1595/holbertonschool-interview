@@ -6,7 +6,6 @@ integers representing the Pascals triangle of n:
 Returns an empty list if n <= 0
 You can assume n will be always an integer
 '''
-from operator import truediv
 
 
 def pascal_triangle(n):
