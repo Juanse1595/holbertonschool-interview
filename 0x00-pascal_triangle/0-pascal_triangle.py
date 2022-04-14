@@ -5,28 +5,20 @@ Create a function def pascal_triangle(n): that returns a list of lists of intege
 Returns an empty list if n <= 0
 You can assume n will be always an integer
 '''
+from operator import truediv
+
+
 def pascal_triangle(n):
-    '''
-    Generates an array that emulates a pascal
-    '''
-    if n <= 0:
-        return []
-    triangle = []
-    row = 1
-    while row <= n:
-        if row == 1:
-            triangle.append([1])
-            row = row + 1
-            continue
-        elif row == 2:
-            triangle.append([1, 1])
-            row = row + 1
-            continue
-        else:
-            new_array = [1]
-            idx_aux = 0
-        while idx_aux + 1 < row - 1:
-            new_array.append([triangle[row - 2][idx_aux] + triangle[row - 2][idx_aux + 1]])
-            idx_aux = idx_aux + 1
-        new_array.append([1])
-        triangle.append([new_array])
+	'''
+	Generates an array that emulates a pascal
+	'''
+	if n <= 0:
+		return []
+	triangle = [[1]]
+	for i in range(n - 1):
+		temp = [0] + triangle[-1] + [0]
+		row = []
+		for j in range(len(triangle[-1] + 1)):
+			row.append(temp[j] + temp[j + 1])
+		triangle.append(row)
+	return triangle
