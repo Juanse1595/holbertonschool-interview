@@ -16,8 +16,12 @@ def pascal_triangle(n):
     while row <= n:
         if row == 1:
             triangle.append([1])
+            row = row + 1
+            continue
         elif row == 2:
             triangle.append([1, 1])
+            row = row + 1
+            continue
         else:
             new_array = [1]
             idx_aux = 0
