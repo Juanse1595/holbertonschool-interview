@@ -6,6 +6,9 @@ Returns an empty list if n <= 0
 You can assume n will be always an integer
 '''
 def pascal_triangle(n):
+    '''
+    Generates an array that emulates a pascal
+    '''
     if n <= 0:
         return []
     triangle = []
@@ -23,4 +26,3 @@ def pascal_triangle(n):
             idx_aux = idx_aux + 1
         new_array.append([1])
         triangle.append([new_array])
-        
