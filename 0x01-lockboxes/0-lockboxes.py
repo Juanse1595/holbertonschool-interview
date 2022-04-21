@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''
-You have n number of locked boxes in front of you. Each box is numbered sequentially from 0 to n - 1 and each box may contain keys to the other boxes.
+You have n number of locked boxes in front of you. Each box is numbered
+sequentially from 0 to n - 1 and each box may contain keys to the other boxes.
 
 Write a method that determines if all the boxes can be opened.
 
@@ -15,24 +16,24 @@ Write a method that determines if all the boxes can be opened.
 
 
 def canUnlockAll(boxes):
-  '''
-  Function to determine if all boxes are opened
-  '''
-  boxesOpened = 0
-  boxesLength = len(boxes)
-  keySet = set()
-  keySet.update(boxes[0])
-  for round in range(1, boxesLength):
-    '''The loop must be done maximum n times'''
-    for idx in range (1, boxesLength):
-      '''Each box will be checked per round'''
-      for key in keySet:
-        if key == idx:
-          '''If key is the number of the box,
-          add new keys'''
-          keySet.update(boxes[idx])
-          break
-      if len(keySet) == boxesLength - 1:
-        '''If keySet has all the keys, return true'''
-        return True
-  return False
+    '''
+    Function to determine if all boxes are opened
+    '''
+    boxesOpened = 0
+    boxesLength = len(boxes)
+    keySet = set()
+    keySet.update(boxes[0])
+    for round in range(1, boxesLength):
+        '''The loop must be done maximum n times'''
+        for idx in range(1, boxesLength):
+            '''Each box will be checked per round'''
+            for key in keySet:
+                if key == idx:
+                    '''If key is the number of the box,
+                    add new keys'''
+                    keySet.update(boxes[idx])
+                    break
+            if len(keySet) == boxesLength - 1:
+                '''If keySet has all the keys, return true'''
+                return True
+    return False
