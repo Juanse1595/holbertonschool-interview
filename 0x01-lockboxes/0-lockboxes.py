@@ -15,10 +15,16 @@ Write a method that determines if all the boxes can be opened.
 '''
 
 
+
+
 def canUnlockAll(boxes):
     '''
     Function to determine if all boxes are opened
     '''
+    if type(boxes) != list or len(boxes) < 1:
+        return False
+    if len(boxes) == 1 and type(boxes[0]) == list:
+        return True
     boxesOpened = 0
     boxesLength = len(boxes)
     keySet = set()
