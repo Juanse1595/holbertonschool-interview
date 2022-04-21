@@ -23,6 +23,12 @@ def canUnlockAll(boxes):
         return False
     if len(boxes) == 1 and type(boxes[0]) == list:
         return True
+    for box in boxes:
+        if type(box) != list:
+            return False
+        for number in box:
+            if not isinstance(number, int):
+                return False
     boxesOpened = 0
     boxesLength = len(boxes)
     keySet = set()
