@@ -14,36 +14,51 @@ Write a method that determines if all the boxes can be opened.
 - Return True if all boxes can be opened, else return False
 '''
 
-
 def canUnlockAll(boxes):
     '''
-    Function to determine if all boxes are opened
+    Function to determine if all boxes can be opened
+    The first key available is 0, and from then let's open the
+    other boxes.
     '''
-    if type(boxes) != list or len(boxes) < 1:
-        return False
-    if len(boxes) == 1 and type(boxes[0]) == list:
-        return True
-    for box in boxes:
-        if type(box) != list:
-            return False
-        for number in box:
-            if not isinstance(number, int):
-                return False
-    boxesOpened = 0
-    boxesLength = len(boxes)
-    keySet = set()
-    keySet.update(boxes[0])
-    for round in range(1, boxesLength):
-        '''The loop must be done maximum n times'''
-        for idx in range(1, boxesLength):
-            '''Each box will be checked per round'''
-            for key in keySet:
-                if key == idx:
-                    '''If key is the number of the box,
-                    add new keys'''
-                    keySet.update(boxes[idx])
-                    break
-            if len(keySet) == boxesLength - 1:
-                '''If keySet has all the keys, return true'''
-                return True
-    return False
+    keys_available = [0]
+    boxes_length = len(boxes)
+    for key in keys_available:
+        for key_in_box in boxes[key]:
+            if key_in_box not in keys_available and key_in_box < boxes_length:
+                keys_available.append(key_in_box)
+    return len(keys_available) == boxes_length
+
+
+# def canUnlockAll(boxes):
+#     '''
+#     Function to determine if all boxes are opened
+#     '''
+#     if type(boxes) != list or len(boxes) < 1:
+#         return False
+#     if len(boxes) == 1 and type(boxes[0]) == list:
+#         return True
+#     for box in boxes:
+#         if type(box) != list:
+#             return False
+#         for number in box:
+#             if not isinstance(number, int):
+#                 return False
+#     boxesOpened = 0
+#     boxesLength = len(boxes)
+#     keySet = set()
+#     keySet.update(boxes[0])
+#     for round in range(1, boxesLength):
+#         '''The loop must be done maximum n times'''
+#         for idx in range(1, boxesLength):
+#             '''Each box will be checked per round'''
+#             for key in keySet:
+#                 if key == idx:
+#                     '''If key is the number of the box,
+#                     add new keys'''
+#                     keySet.update(boxes[idx])
+#                     break
+#             if len(keySet) == boxesLength - 1:
+#                 '''If keySet has all the keys, return true'''
+#                 return True
+#     return False
+
