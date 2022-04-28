@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''
 In a text file, there is a single character H. Your text editor can execute
 only two operations in this file: Copy All and Paste. Given a number n, write
@@ -15,21 +16,22 @@ H => Copy All => Paste => HH => Paste =>HHH => Copy All => Paste => HHHHHH
 Number of operations: 6
 '''
 
-def minOperations(n):
-  '''
-  For calculating the number of operations, its necessary to
-  do a prime decomposition to n, and then sum the prime numbers
-  that were used in the decomposition
-  '''
-  if n <= 0:
-    return 0
 
-  divisor = 2
-  result = 0
-  while n > 1:
-    if n % divisor == 0:
-      n = n / divisor
-      result += divisor
-    else:
-      divisor += 1
-  return result
+def minOperations(n):
+    '''
+    For calculating the number of operations, its necessary to
+    do a prime decomposition to n, and then sum the prime numbers
+    that were used in the decomposition
+    '''
+    if n <= 0:
+        return 0
+
+    divisor = 2
+    result = 0
+    while n > 1:
+        if n % divisor == 0:
+            n = n / divisor
+            result += divisor
+        else:
+            divisor += 1
+    return result
