@@ -44,6 +44,4 @@ for line in sys.stdin:
         for key, value in status_counter.items():
             if value:
                 print(f'{key}: {value}')
-        for key in status_counter.keys():
-            status_counter[key] = 0
     lines_counter += 1
