@@ -29,7 +29,6 @@ status_counter = {'200': 0, '301': 0, '400': 0,
 input_format = re.compile(r'([0-9]{1,3}\.){3}[0-9]{1,3}.+')
 for line in sys.stdin:
     if input_format.match(line.strip()) is None:
-        print('didnt match the regex')
         break
     line_array = line.split(' ')
     # print(line_array)
@@ -40,8 +39,8 @@ for line in sys.stdin:
             status_counter[key] += 1
     # print(lines_counter)
     if lines_counter % 10 == 0:
-        print(f'File size: {total_size}')
+        print('File size: {}'.format(total_size))
         for key, value in status_counter.items():
             if value:
-                print(f'{key}: {value}')
+                print('{}: {}'.format(key, value))
     lines_counter += 1
