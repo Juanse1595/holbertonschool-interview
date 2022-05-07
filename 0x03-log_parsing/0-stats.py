@@ -27,26 +27,29 @@ total_size = 0
 status_counter = {'200': 0, '301': 0, '400': 0,
                   '401': 0, '403': 0, '404': 0, '405': 0, '500': 0}
 input_format = re.compile(r'([0-9]{1,3}\.){3}[0-9]{1,3}.+')
-for line in sys.stdin:
-    try:
+
+try:
+    for line in sys.stdin:
         if input_format.match(line.strip()) is None:
             break
         line_array = line.split(' ')
-        # print(line_array)
         total_size += int(line_array[-1])
-        # print(total_size)
         for key in status_counter.keys():
             if key == line_array[-2] and isinstance(status_counter[key], int):
                 status_counter[key] += 1
-        # print(lines_counter)
         if lines_counter % 10 == 0:
             print('File size: {}'.format(total_size))
             for key, value in status_counter.items():
                 if value:
                     print('{}: {}'.format(key, value))
-    except KeyboardInterrupt:
-        print('File size: {}'.format(total_size))
-        for key, value in status_counter.items():
-            if value:
-                print('{}: {}'.format(key, value))
-    lines_counter += 1
+        lines_counter += 1
+    print('File size: {}'.format(total_size))
+    for key, value in status_counter.items():
+        if value:
+            print('{}: {}'.format(key, value))
+except (KeyboardInterrupt, SystemExit):
+    print('File size: {}'.format(total_size))
+    for key, value in status_counter.items():
+        if value:
+            print('{}: {}'.format(key, value))
+    raise
