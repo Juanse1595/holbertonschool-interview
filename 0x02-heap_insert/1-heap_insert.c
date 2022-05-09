@@ -44,6 +44,21 @@ void get_parent_node(heap_t **root, int index)
 	}
 }
 
+void swap_values(heap_t *current)
+{
+	int tmp;
+	if (current->parent == NULL)
+		return;
+
+	if (current->n > (current->parent)->n)
+	{
+		tmp = current->n;
+		current->n = (current->parent)->n;
+		(current->parent)->n = tmp;
+	}
+
+	swap_values(current->parent);
+}
 
 /**
  * heap_insert - inserts a value into a Max Binary Heap
@@ -57,7 +72,7 @@ heap_t *heap_insert(heap_t **root, int value)
 {
 	heap_t *parent_node = *root;
 	heap_t *new_node = NULL;
-	int index = tree_length;
+	int index = tree_length(root);
 
 	if (root == NULL)
 		return (NULL);
@@ -70,7 +85,10 @@ heap_t *heap_insert(heap_t **root, int value)
 	new_node->left = new_node->parent = new_node->right = NULL;
 
 	if (*root == NULL)
-		return (binary_tree_node(*root, value));
+	{
+		*root = new_node;
+		return (new_node);
+	}
 
 	get_parent_node(&parent_node, index);
 	new_node->parent = parent_node;
@@ -82,6 +100,8 @@ heap_t *heap_insert(heap_t **root, int value)
 	{
 		parent_node->right = new_node;
 	}
+
+	swap_values(new_node);
 
 	return (new_node);
 
