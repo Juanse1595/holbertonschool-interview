@@ -44,9 +44,17 @@ void get_parent_node(heap_t **root, int index)
 	}
 }
 
+/**
+ * swap_values - swaps the values if current-n is greater than parent-n
+ * @current: current node
+ * 
+ * Return: none
+ */
+
 void swap_values(heap_t *current)
 {
 	int tmp;
+
 	if (current->parent == NULL)
 		return;
 
