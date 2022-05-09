@@ -47,7 +47,7 @@ void get_parent_node(heap_t **root, int index)
 /**
  * swap_values - swaps the values if current-n is greater than parent-n
  * @current: current node
- * 
+ *
  * Return: none
  */
 
