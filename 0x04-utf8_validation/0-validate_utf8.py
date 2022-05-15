@@ -18,11 +18,23 @@ def validUTF8(data):
     '''
     Validates if evey integer in data array is valid UTF-8 character
     '''
-    if not data:
-        return False
-    for elm in data:
-        if not isinstance(elm, int):
-            return False
-        if elm < 0 or elm > 255:
-            return False
-    return True
+    numb_bytes = 0
+
+    mask1 = 1 << 7
+    mask2 = 1 << 6
+
+    for number in data:
+        mask = 1 << 7
+        if numb_bytes == 0:
+            while m & number:
+                numb_bytes += 1
+                mask1 = mask1 >> 1
+            if numb_bytes == 0:
+                continue
+            if numb_bytes == 1 or numb_bytes > 4:
+                return False
+        else:
+            if not (number & mask1 and not (number & mask2)):
+                return False
+        numb_bytes -= 1
+    return numb_bytes == 0
