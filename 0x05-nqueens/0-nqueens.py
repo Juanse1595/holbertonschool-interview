@@ -13,11 +13,11 @@ def queens(n, i, a, b, c):
         yield a
 
 
-if sys.argv.__len__ != 2:
-    print('Usage: nqueens N')
+if sys.argv.__len__() != 2:
+    print('Usage: nqueens N ')
     sys.exit(1)
 
-n = sys.argv[1]
+n = int(sys.argv[1])
 if not isinstance(n, int):
     print('N must be a number')
     sys.exit(1)
@@ -26,5 +26,8 @@ if n < 4:
     print('N must be at least 4')
     sys.exit(1)
 
-for solution in queens(n, 0, [], [], []):
-    print(solution)
+for y_coordinates in queens(n, 0, [], [], []):
+    x_coordinates = [[x] for x in range(0, n)]
+    for i, x in enumerate(x_coordinates):
+        x.append(y_coordinates[i])
+    print(x_coordinates)
