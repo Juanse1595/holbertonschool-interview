@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def queens(n, i, a, b, c):
     '''
     Calculates every possible solution to the n queen puzzle
