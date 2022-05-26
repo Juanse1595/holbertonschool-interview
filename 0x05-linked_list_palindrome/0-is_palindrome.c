@@ -8,14 +8,14 @@
 
 int is_palindrome(listint_t **head)
 {
-	if (head == NULL || *head == NULL)
-		return (1);
-	int size_of_list;
+	int size_of_list, i;
 	listint_t *current_1;
 
+	if (head == NULL || *head == NULL)
+		return (1);
 	size_of_list = get_list_size(*head);
 	current_1 = *head;
-	for (int i = 0; i < size_of_list; i++)
+	for (i = 0; i < size_of_list; i++)
 	{
 		if (current_1->n != (last_element(*head, size_of_list - i))->n)
 			return (0);
