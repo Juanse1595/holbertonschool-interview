@@ -23,14 +23,14 @@ def isWinner(x, nums):
     Returns the name of the winner
     '''
     winner = []
-    for num in nums:
-        winner.append(roundWinner(x, num))
+    for idx in range(0, x):
+        winner.append(roundWinner(nums[idx]))
     if winner.count('Ben') > (len(winner)/2):
         return 'Ben'
     return 'Maria'
 
 
-def roundWinner(x, num):
+def roundWinner(num):
     '''
     Calculates who wons every round
     '''
