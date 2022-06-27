@@ -22,6 +22,8 @@ def isWinner(x, nums):
     '''
     Returns the name of the winner
     '''
+    if x <= 0:
+        return None
     winner = []
     for idx in range(0, x):
         winner.append(roundWinner(nums[idx]))
